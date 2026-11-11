@@ -4,7 +4,7 @@ using System;
 class Program
 {
 
-	static void init_by_zero(char[,] matrix)
+	static void InitByZero(char[,] matrix)
 	{
 		for (int i = 0; i < 11; i++)
 		{
@@ -15,7 +15,7 @@ class Program
 		}
 	}
 
-	static void print_matrix(in char[,] matrix)
+	static void PrintMatrix(in char[,] matrix)
 	{
 		for (int i = 0; i < 10; i++)
 		{
@@ -27,7 +27,7 @@ class Program
 		}
 	}
 
-	static bool check_verev(int x, int y, in char[,] matrix)
+	static bool CheckVerev(int x, int y, in char[,] matrix)
 	{
 		while (y >= 0)
 		{
@@ -38,7 +38,7 @@ class Program
 		return true;
 	}
 
-	static bool check_ankyunagic(int x, int y, in char[,] matrix)
+	static bool CheckAnkyunagic(int x, int y, in char[,] matrix)
 	{
 		int temp_x = x - 1;
 		int temp_y = y - 1;
@@ -63,7 +63,7 @@ class Program
 		return true;
 	}
 
-	static void print_answer(char[,] matrix)
+	static void PrintAnswer(char[,] matrix)
 	{
 		int i = 0;
 		
@@ -75,23 +75,23 @@ class Program
 		System.Console.WriteLine();
 	}
 
-	static void rec(int y, char[,] matrix, ref int count)
+	static void Rec(int y, char[,] matrix, ref int count)
 	{
 		int x = 0;
 
 		if (y == 10)
 		{
-			print_answer(matrix);
+			PrintAnswer(matrix);
 			++count;
 			return ;
 		}
 		while (x < 10)
 		{
-			if (check_ankyunagic(x, y, matrix) == true && check_verev(x, y, matrix) == true)
+			if (CheckAnkyunagic(x, y, matrix) == true && CheckVerev(x, y, matrix) == true)
 			{
 				matrix[y, x] = 'Q';
 				matrix[10, y] = Convert.ToString(x)[0];
-				rec(y + 1, matrix, ref count);
+				Rec(y + 1, matrix, ref count);
 				matrix[y, x] = '0';
 				matrix[10, y] = '0';
 			}
@@ -103,8 +103,8 @@ class Program
 		int count = 0;
 		char[,]	matrix = new char[11,10];
 
-		init_by_zero(matrix);
-		rec(0, matrix, ref count);
+		InitByZero(matrix);
+		Rec(0, matrix, ref count);
 		System.Console.WriteLine(count);
 	}
 }
